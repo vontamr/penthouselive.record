@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Penthouse Live • Record • Orlando</title>
+   
+    <script src="https://cdn.tailwindcss.com" async></script>
+    <script>
+        function initTailwind() {
+            tailwind.config = { content: ["./**/*.{html,js}"] };
+        }
+        window.addEventListener('load', initTailwind);
+    </script>
+    <style>
+        .hero-video {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            object-fit: cover;
+            z-index: -2;
+        }
+        #gate {
+            background: rgba(0, 0, 0, 0.75);
+        }
+    </style>
+</head>
+<body class="bg-black text-white font-sans overflow-hidden">
+
+    <!-- YOUR BACKGROUND VIDEO -->
+    <video autoplay loop playsinline class="hero-video" id="bg-video">
+        <source src="assets/video/penthouse-bg.mp4" type="video/mp4">
+    </video>
+
+    <!-- Password Gate -->
+    <div id="gate" class="fixed inset-0 flex items-center justify-center z-50">
+        <div class="text-center max-w-md px-6">
+           
+            <!-- Main Logo (before login) -->
+            <img src="assets/images/penthouserecords.png"
+                 alt="Penthouse Records"
+                 class="mx-auto mb-8 w-72">
+
+                <!-- Bold Text like your logo - Refined -->
+<p class="text-[28px] md:text-[34px] mb-8 font-black tracking-[-1.5px] text-white leading-none">
+   <br>
+    <span class=""text-white"">SELECTIVE BY DESIGN</span>
+</p>
+            <div class="space-y-8">
+                <p class="text-sm uppercase tracking-widest text-red-400">ENTER ACCESS CODE</p>
+               
+                <input id="password" type="password" placeholder="••••••••"
+                       class="w-full bg-black/60 border border-white/30 backdrop-blur-md text-center text-4xl py-6 rounded-3xl focus:outline-none focus:border-red-500 text-white placeholder-gray-500">
+
+                <button onclick="checkPassword()"
+                        class="w-full bg-red-600 hover:bg-red-700 text-white py-4 rounded-3xl font-semibold text-lg tracking-wider transition-all active:scale-95">
+                    ENTER THE PENTHOUSE
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content (after login) -->
+    <div id="main-content" class="hidden min-h-screen flex flex-col">
+        <div class="bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800 px-6 py-3 flex items-center justify-between z-50">
+            <div class="flex items-center gap-3">
+                <!-- FIXED: Logo in top bar -->
+                <img src="assets/images/penthouserecords.png" 
+                     alt="Penthouse Records" 
+                     class="h-9">
+            </div>
+           
+            <div class="flex items-center gap-6 text-sm">
+                <div class="flex items-center gap-2">
+                    <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
+                    <span class="font-medium text-red-500">LIVE</span>
+                </div>
+                <span class="text-gray-400">14,892 watching</span>
+            </div>
+            <button onclick="logout()" class="text-sm px-6 py-2 border border-zinc-700 hover:border-white rounded-full transition-colors">
+                Leave Stream
+            </button>
+        </div>
+
+        <!-- Video + Chat Area -->
+        <div class="flex flex-1 overflow-hidden">
+            <div class="flex-1 relative bg-black">
+                <video autoplay loop muted playsinline class="hero-video">
+                    <source src="assets/video/penthouse-live.mp4" type="video/mp4">
+                </video>
+                <div class="absolute top-6 left-6 bg-black/70 px-4 py-1 rounded-full text-sm flex items-center gap-2">
+                    <div class="w-3 h-3 bg-red-600 rounded-full animate-pulse"></div>
+                    <span>LIVE FROM THE PENTHOUSE</span>
+                </div>
+            </div>
+
+            <div class="w-96 bg-zinc-950/90 backdrop-blur-md border-l border-zinc-800 flex flex-col">
+                <div class="p-4 border-b border-zinc-800 font-medium text-sm flex items-center gap-2">
+                    <span class="text-red-500">●</span> LIVE CHAT
+                </div>
+                <div class="flex-1 p-4 overflow-y-auto text-sm space-y-3 text-gray-300" id="chat">
+                    <div><span class="text-emerald-400">@rooftopking</span> This view is insane 🔥</div>
+                </div>
+                <div class="p-4 border-t border-zinc-800">
+                    <input type="text" id="chat-input" placeholder="Type a message..."
+                           class="w-full bg-zinc-900 border border-zinc-700 rounded-full px-5 py-3 text-sm focus:outline-none">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const correctPassword = "penthouse2026";
+
+        function checkPassword() {
+            const input = document.getElementById('password').value;
+            if (input === correctPassword) {
+                document.getElementById('gate').classList.add('hidden');
+                document.getElementById('main-content').classList.remove('hidden');
+            } else {
+                alert("Incorrect access code.");
+            }
+        }
+
+        document.getElementById('password').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') checkPassword();
+        });
+
+        function logout() {
+            if (confirm("Leave the Penthouse stream?")) {
+                document.getElementById('main-content').classList.add('hidden');
+                document.getElementById('gate').classList.remove('hidden');
+                document.getElementById('password').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
