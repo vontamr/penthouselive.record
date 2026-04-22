@@ -35,6 +35,11 @@
             box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.2);
             background: rgba(255, 255, 255, 0.15);
         }
+        .luxury-input.success {
+            border-color: #22C55E;
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+            background: rgba(34, 197, 94, 0.1);
+        }
         .capsule-card {
             background: rgba(255, 255, 255, 0.07);
             border: 1px solid rgba(255, 255, 255, 0.18);
@@ -45,15 +50,6 @@
             border-color: #FF0000;
             transform: translateY(-4px);
         }
-        /* Mobile Improvements */
-        @media (max-width: 768px) {
-            .capsule-card {
-                padding: 1.75rem;
-            }
-            .hero-video {
-                object-position: center;
-            }
-        }
     </style>
 </head>
 <body class="bg-black text-white font-sans overflow-hidden">
@@ -63,33 +59,34 @@
         <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/Penthouse-bg.mp4" type="video/mp4">
     </video>
 
-    <!-- Password Gate -->
+    <!-- Password Gate - Smaller Box -->
     <div id="gate" class="fixed inset-0 flex items-center justify-center z-50 px-4">
         <div class="text-center max-w-md w-full">
             <img src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/images/penthouserecords.png"
                  alt="Penthouse Records"
                  class="mx-auto mb-8 w-64 sm:w-72">
 
-            <p class="text-lg sm:text-xl mb-8 text-gray-300">SELECTIVE BY DESIGN</p>
+            <p class="text-lg sm:text-xl mb-8 text-gray-300">Downtown Orlando Penthouse • Members Only</p>
 
-            <div class="space-y-6">
-                <p class="text-sm uppercase tracking-[3px] text-red-400 font-semibold">ENTER ACCESS CODE</p>
+            <div class="space-y-5">
+                <p class="text-sm uppercase tracking-[3px] text-red-400 font-medium">ENTER ACCESS CODE</p>
                 
+                <!-- Smaller Access Code Box -->
                 <input id="password" type="password" placeholder="••••••••"
-                       class="luxury-input w-full text-center text-3xl py-5 rounded-3xl text-white placeholder-gray-400 focus:outline-none">
+                       class="luxury-input w-full max-w-xs mx-auto text-center text-2xl py-4 rounded-3xl text-white placeholder-gray-400 focus:outline-none">
 
+                <!-- Smaller Enter Button -->
                 <button onclick="checkPassword()"
-                        class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white py-5 rounded-3xl font-semibold text-lg tracking-widest transition-all active:scale-[0.98]">
+                        class="w-full max-w-xs mx-auto bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white py-4 rounded-3xl font-semibold text-base tracking-widest transition-all active:scale-[0.98]">
                     ENTER THE PENTHOUSE
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Premium Capsule Screen - Mobile Friendly -->
+    <!-- Premium Capsule Screen -->
     <div id="capsule" class="hidden fixed inset-0 overflow-y-auto flex items-center justify-center z-50 px-4 py-8">
         <div class="max-w-4xl w-full relative">
-            <!-- Teaser Background -->
             <div class="absolute inset-0 bg-black/70 rounded-3xl overflow-hidden -z-10">
                 <video autoplay loop muted playsinline class="w-full h-full object-cover opacity-60">
                     <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/penthouse-live.mp4" type="video/mp4">
@@ -109,7 +106,6 @@
                     Choose your path to unlock the full experience.
                 </p>
 
-                <!-- 3 Options - Responsive Grid -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
                     <div onclick="joinLive()" class="capsule-card rounded-3xl p-8 cursor-pointer text-left">
                         <div class="text-red-400 text-3xl mb-6">✉️</div>
@@ -138,9 +134,8 @@
         </div>
     </div>
 
-    <!-- Main Live Stream - Mobile Optimized -->
+    <!-- Main Live Stream -->
     <div id="main-content" class="hidden min-h-screen flex flex-col">
-        <!-- Top Bar -->
         <div class="bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800 px-4 py-3 flex items-center justify-between z-50">
             <div class="flex items-center gap-3">
                 <img src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/images/penthouserecords.png"
@@ -155,7 +150,6 @@
                 <span class="text-gray-400 hidden sm:inline">14,892 watching</span>
             </div>
 
-            <!-- Controls -->
             <div class="flex items-center gap-2">
                 <button onclick="toggleMute()" id="mute-btn"
                         class="w-11 h-11 flex items-center justify-center text-2xl hover:bg-zinc-800 rounded-full transition-colors">
@@ -174,9 +168,7 @@
             </div>
         </div>
 
-        <!-- Live Content - Stacks on Mobile -->
         <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
-            <!-- Video Area -->
             <div class="flex-1 relative bg-black min-h-[60vh] lg:min-h-0">
                 <video autoplay loop muted playsinline class="hero-video" id="main-video">
                     <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/penthouse-live.mp4" type="video/mp4">
@@ -187,7 +179,6 @@
                 </div>
             </div>
 
-            <!-- Chat Sidebar - Full width on mobile -->
             <div class="w-full lg:w-96 bg-zinc-950/90 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col h-[40vh] lg:h-auto">
                 <div class="p-4 border-b border-zinc-800 font-medium text-sm flex items-center gap-2">
                     <span class="text-red-500">●</span> LIVE CHAT
@@ -208,11 +199,24 @@
         let isMuted = true;
 
         function checkPassword() {
-            if (document.getElementById('password').value === correctPassword) {
-                document.getElementById('gate').classList.add('hidden');
-                document.getElementById('capsule').classList.remove('hidden');
+            const passwordInput = document.getElementById('password');
+            const inputValue = passwordInput.value;
+
+            if (inputValue === correctPassword) {
+                passwordInput.classList.add('success');
+                
+                setTimeout(() => {
+                    document.getElementById('gate').classList.add('hidden');
+                    document.getElementById('capsule').classList.remove('hidden');
+                    passwordInput.classList.remove('success');
+                    passwordInput.value = '';
+                }, 800);
             } else {
                 alert("Incorrect access code.");
+                passwordInput.classList.add('!border-red-500');
+                setTimeout(() => {
+                    passwordInput.classList.remove('!border-red-500');
+                }, 1500);
             }
         }
 
