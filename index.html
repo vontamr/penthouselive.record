@@ -40,6 +40,19 @@ window.addEventListener('load', initTailwind);
     background: rgba(34, 197, 94, 0.1);
 }
 
+/* Capsule Red Hover Effect Restored */
+.capsule-card {
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    backdrop-filter: blur(16px);
+    transition: all 0.4s ease;
+}
+.capsule-card:hover {
+    border-color: #FF0000;
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.12);
+}
+
 .gate-logo { filter: drop-shadow(0 10px 15px rgba(255, 0, 0, 0.3)); }
 .nav-logo { height: 78px; width: auto; }
 
@@ -48,10 +61,10 @@ window.addEventListener('load', initTailwind);
     .gate-logo { width: 260px; }
 }
 
-/* Mobile Chat Fix */
+/* Mobile Friendly Chat */
 .chat-wrapper {
-    min-height: 45vh;
-    max-height: 55vh;
+    min-height: 48vh;        /* Better height for mobile */
+    max-height: 58vh;
 }
 @media (min-width: 1024px) {
     .chat-wrapper { min-height: auto; max-height: none; }
@@ -76,7 +89,7 @@ window.addEventListener('load', initTailwind);
 /* AI Typewriter */
 .ai-typewriter {
     font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
-    font-size: 1.95rem;
+    font-size: 1.6rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
@@ -191,7 +204,7 @@ window.addEventListener('load', initTailwind);
     </div>
     
     <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
-        <div class="flex-1 relative bg-black min-h-[50vh] lg:min-h-0">
+        <div class="flex-1 relative bg-black min-h-[45vh] lg:min-h-0">
             <video autoplay loop muted playsinline class="hero-video" id="main-video">
                 <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/penthouse-live.mp4" type="video/mp4">
             </video>
@@ -201,7 +214,7 @@ window.addEventListener('load', initTailwind);
             </div>
         </div>
         
-        <!-- Chat with Fake Messages -->
+        <!-- Improved Mobile Chat -->
         <div class="chat-wrapper w-full lg:w-96 bg-zinc-950/95 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col">
             <div class="p-4 border-b border-zinc-800 font-medium text-sm flex items-center gap-2 bg-black/60">
                 <span class="text-red-500">●</span> 
