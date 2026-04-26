@@ -48,10 +48,35 @@ window.addEventListener('load', initTailwind);
     .gate-logo { width: 260px; }
 }
 
-/* Smaller SELECTIVE BY DESIGN Text */
+/* Mobile Chat Fix */
+.chat-wrapper {
+    min-height: 45vh;
+    max-height: 55vh;
+}
+@media (min-width: 1024px) {
+    .chat-wrapper { min-height: auto; max-height: none; }
+}
+
+/* Chat Styles */
+.chat-container {
+    scrollbar-width: thin;
+    scrollbar-color: #FF3333 #1F2937;
+}
+.chat-container::-webkit-scrollbar { width: 6px; }
+.chat-container::-webkit-scrollbar-thumb {
+    background: #FF3333;
+    border-radius: 20px;
+}
+.chat-message { animation: fadeIn 0.3s ease-in; }
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* AI Typewriter */
 .ai-typewriter {
     font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
-    font-size: 1.7rem;     /* Smaller as requested */
+    font-size: 1.95rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
@@ -71,15 +96,6 @@ window.addEventListener('load', initTailwind);
     font-size: 1.85rem;
 }
 @keyframes blinkCursor { 50% { opacity: 0; } }
-
-/* Chat */
-.chat-wrapper { height: 380px; }
-@media (min-width: 1024px) { .chat-wrapper { height: auto; } }
-
-.chat-container::-webkit-scrollbar { width: 6px; }
-.chat-container::-webkit-scrollbar-thumb { background: #FF3333; border-radius: 20px; }
-.chat-message { animation: fadeIn 0.3s ease-in; }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body class="bg-black text-white font-sans overflow-hidden">
@@ -111,7 +127,7 @@ window.addEventListener('load', initTailwind);
 </div>
 </div>
 
-<!-- Capsule -->
+<!-- Capsule Screen -->
 <div id="capsule" class="hidden fixed inset-0 overflow-y-auto flex items-center justify-center z-50 px-4 py-8">
 <div class="max-w-4xl w-full relative">
     <div class="absolute inset-0 bg-black/70 rounded-3xl overflow-hidden -z-10">
@@ -175,7 +191,7 @@ window.addEventListener('load', initTailwind);
     </div>
     
     <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
-        <div class="flex-1 relative bg-black min-h-[60vh] lg:min-h-0">
+        <div class="flex-1 relative bg-black min-h-[50vh] lg:min-h-0">
             <video autoplay loop muted playsinline class="hero-video" id="main-video">
                 <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/penthouse-live.mp4" type="video/mp4">
             </video>
@@ -185,11 +201,21 @@ window.addEventListener('load', initTailwind);
             </div>
         </div>
         
+        <!-- Chat with Fake Messages -->
         <div class="chat-wrapper w-full lg:w-96 bg-zinc-950/95 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col">
             <div class="p-4 border-b border-zinc-800 font-medium text-sm flex items-center gap-2 bg-black/60">
-                <span class="text-red-500">●</span> LIVE CHAT <span class="ml-auto text-xs text-gray-500">248 online</span>
+                <span class="text-red-500">●</span> 
+                <span>LIVE CHAT</span>
+                <span class="ml-auto text-xs text-gray-500">248 online</span>
             </div>
-            <div id="chat" class="chat-container flex-1 p-4 overflow-y-auto text-sm space-y-3 text-gray-300 bg-black/40"></div>
+            
+            <div id="chat" class="chat-container flex-1 p-4 overflow-y-auto text-sm space-y-3 text-gray-300 bg-black/40">
+                <div class="chat-message"><span class="text-emerald-400">@rooftopking</span> This view is insane 🔥</div>
+                <div class="chat-message"><span class="text-pink-400">@orlandovibes</span> Penthouse energy hitting different tonight</div>
+                <div class="chat-message"><span class="text-sky-400">@luxurylife</span> Best club in Orlando hands down</div>
+                <div class="chat-message"><span class="text-amber-400">@downtownelite</span> Who else got the golden ticket? 👀</div>
+            </div>
+            
             <div class="p-4 border-t border-zinc-800 bg-zinc-900">
                 <div class="flex gap-2">
                     <input type="text" id="chat-input" placeholder="Say something..." 
