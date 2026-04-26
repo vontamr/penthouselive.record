@@ -60,19 +60,27 @@ window.addEventListener('load', initTailwind);
     .gate-logo { width: 260px; }
 }
 
-/* Improved Mobile Chat */
-.chat-wrapper {
-    min-height: 52vh;
-    max-height: 60vh;
+/* Premium Mobile Chat - Switched Placement & Improved */
+.chat-section {
+    flex: 1;
+    min-height: 55vh;           /* Much taller on mobile */
+    display: flex;
+    flex-direction: column;
 }
 @media (min-width: 1024px) {
-    .chat-wrapper { min-height: auto; max-height: none; }
+    .chat-section { 
+        flex: none; 
+        width: 380px; 
+        min-height: auto; 
+    }
 }
 
 /* Chat Styles */
 .chat-container {
     scrollbar-width: thin;
     scrollbar-color: #FF3333 #1F2937;
+    flex: 1;
+    overflow-y: auto;
 }
 .chat-container::-webkit-scrollbar { width: 6px; }
 .chat-container::-webkit-scrollbar-thumb {
@@ -112,7 +120,7 @@ window.addEventListener('load', initTailwind);
 </head>
 <body class="bg-black text-white font-sans overflow-hidden">
 
-<!-- Background Video - More Reliable -->
+<!-- Background Video -->
 <video id="bg-video" class="hero-video" autoplay loop muted playsinline preload="auto">
     <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/Penthouse-bg.mp4" type="video/mp4">
 </video>
@@ -139,7 +147,7 @@ window.addEventListener('load', initTailwind);
 </div>
 </div>
 
-<!-- Capsule Screen -->
+<!-- Capsule Screen (unchanged) -->
 <div id="capsule" class="hidden fixed inset-0 overflow-y-auto flex items-center justify-center z-50 px-4 py-8">
 <div class="max-w-4xl w-full relative">
     <div class="absolute inset-0 bg-black/70 rounded-3xl overflow-hidden -z-10">
@@ -203,7 +211,8 @@ window.addEventListener('load', initTailwind);
     </div>
     
     <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
-        <div class="flex-1 relative bg-black min-h-[45vh] lg:min-h-0">
+        <!-- Video takes priority on mobile, chat is taller -->
+        <div class="flex-1 relative bg-black min-h-[40vh] lg:min-h-0 order-1 lg:order-none">
             <video autoplay loop muted playsinline class="hero-video" id="main-video">
                 <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/penthouse-live.mp4" type="video/mp4">
             </video>
@@ -213,7 +222,8 @@ window.addEventListener('load', initTailwind);
             </div>
         </div>
         
-        <div class="chat-wrapper w-full lg:w-96 bg-zinc-950/95 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col">
+        <!-- Chat Section - Repositioned & Premium -->
+        <div class="chat-wrapper w-full lg:w-96 bg-zinc-950/95 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col order-2 lg:order-none">
             <div class="p-4 border-b border-zinc-800 font-medium text-sm flex items-center gap-2 bg-black/60">
                 <span class="text-red-500">●</span> 
                 <span>LIVE CHAT</span>
@@ -273,18 +283,12 @@ function typeWriter() {
 
 function initBackgroundVideo() {
     const video = document.getElementById('bg-video');
-    if (video) {
-        video.muted = true;
-        video.play().catch(() => {
-            console.log("Autoplay blocked, retrying...");
-            setTimeout(() => video.play().catch(() => {}), 800);
-        });
-    }
+    if (video) video.play().catch(() => {});
 }
 
 window.addEventListener('load', () => {
     setTimeout(typeWriter, 500);
-    setTimeout(initBackgroundVideo, 300);
+    setTimeout(initBackgroundVideo, 400);
 });
 
 function sendChatMessage() {
