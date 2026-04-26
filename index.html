@@ -40,7 +40,6 @@ window.addEventListener('load', initTailwind);
     background: rgba(34, 197, 94, 0.1);
 }
 
-/* Capsule Red Hover Effect Restored */
 .capsule-card {
     background: rgba(255, 255, 255, 0.07);
     border: 1px solid rgba(255, 255, 255, 0.18);
@@ -61,10 +60,10 @@ window.addEventListener('load', initTailwind);
     .gate-logo { width: 260px; }
 }
 
-/* Mobile Friendly Chat */
+/* Improved Mobile Chat */
 .chat-wrapper {
-    min-height: 48vh;        /* Better height for mobile */
-    max-height: 58vh;
+    min-height: 52vh;
+    max-height: 60vh;
 }
 @media (min-width: 1024px) {
     .chat-wrapper { min-height: auto; max-height: none; }
@@ -89,7 +88,7 @@ window.addEventListener('load', initTailwind);
 /* AI Typewriter */
 .ai-typewriter {
     font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
@@ -113,7 +112,7 @@ window.addEventListener('load', initTailwind);
 </head>
 <body class="bg-black text-white font-sans overflow-hidden">
 
-<!-- Background Video -->
+<!-- Background Video - More Reliable -->
 <video id="bg-video" class="hero-video" autoplay loop muted playsinline preload="auto">
     <source src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/video/Penthouse-bg.mp4" type="video/mp4">
 </video>
@@ -214,7 +213,6 @@ window.addEventListener('load', initTailwind);
             </div>
         </div>
         
-        <!-- Improved Mobile Chat -->
         <div class="chat-wrapper w-full lg:w-96 bg-zinc-950/95 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col">
             <div class="p-4 border-b border-zinc-800 font-medium text-sm flex items-center gap-2 bg-black/60">
                 <span class="text-red-500">●</span> 
@@ -275,12 +273,18 @@ function typeWriter() {
 
 function initBackgroundVideo() {
     const video = document.getElementById('bg-video');
-    if (video) video.play().catch(() => {});
+    if (video) {
+        video.muted = true;
+        video.play().catch(() => {
+            console.log("Autoplay blocked, retrying...");
+            setTimeout(() => video.play().catch(() => {}), 800);
+        });
+    }
 }
 
 window.addEventListener('load', () => {
     setTimeout(typeWriter, 500);
-    setTimeout(initBackgroundVideo, 400);
+    setTimeout(initBackgroundVideo, 300);
 });
 
 function sendChatMessage() {
