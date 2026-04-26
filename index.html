@@ -20,34 +20,24 @@ window.addEventListener('load', initTailwind);
     z-index: -2;
     background: #000;
 }
-#gate, #capsule {
-background: rgba(0, 0, 0, 0.85);
-}
+#gate, #capsule { background: rgba(0, 0, 0, 0.85); }
+
+/* Premium Luxury Input */
 .luxury-input {
-background: rgba(255, 255, 255, 0.08);
-border: 2px solid rgba(255, 255, 255, 0.25);
-backdrop-filter: blur(20px);
-transition: all 0.4s ease;
+    background: rgba(255, 255, 255, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(20px);
+    transition: all 0.4s ease;
 }
 .luxury-input:focus {
-border-color: #FF0000;
-box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.2);
-background: rgba(255, 255, 255, 0.15);
+    border-color: #FF0000;
+    box-shadow: 0 0 0 4px rgba(255, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.15);
 }
 .luxury-input.success {
-border-color: #22C55E;
-box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
-background: rgba(34, 197, 94, 0.1);
-}
-.capsule-card {
-background: rgba(255, 255, 255, 0.07);
-border: 1px solid rgba(255, 255, 255, 0.18);
-backdrop-filter: blur(16px);
-transition: all 0.4s ease;
-}
-.capsule-card:hover {
-border-color: #FF0000;
-transform: translateY(-4px);
+    border-color: #22C55E;
+    box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.3);
+    background: rgba(34, 197, 94, 0.1);
 }
 
 .gate-logo { filter: drop-shadow(0 10px 15px rgba(255, 0, 0, 0.3)); }
@@ -58,45 +48,17 @@ transform: translateY(-4px);
     .gate-logo { width: 260px; }
 }
 
-/* Enhanced Chat */
-.chat-container {
-    scrollbar-width: thin;
-    scrollbar-color: #FF3333 #1F2937;
-}
-.chat-container::-webkit-scrollbar { width: 6px; }
-.chat-container::-webkit-scrollbar-thumb {
-    background: #FF3333;
-    border-radius: 20px;
-}
-.chat-message {
-    animation: fadeIn 0.3s ease-in;
-}
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Smaller Premium Sponsors Popup */
-#sponsors-popup .popup-content {
-    max-width: 380px;
-    animation: popupFade 0.4s ease;
-}
-@keyframes popupFade {
-    from { opacity: 0; transform: scale(0.85); }
-    to { opacity: 1; transform: scale(1); }
-}
-
-/* Clean AI Typewriter */
+/* Smaller SELECTIVE BY DESIGN Text */
 .ai-typewriter {
     font-family: 'Consolas', 'Monaco', 'Lucida Console', monospace;
-    font-size: 2.3rem;
+    font-size: 1.7rem;     /* Smaller as requested */
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.18em;
     color: #ffffff;
     position: relative;
     display: inline-block;
-    min-height: 3.2rem;
+    min-height: 2.8rem;
     text-shadow: 0 0 20px rgba(255,255,255,0.15);
     padding-right: 20px;
 }
@@ -106,9 +68,18 @@ transform: translateY(-4px);
     right: -8px;
     color: #FF3333;
     animation: blinkCursor 0.6s step-end infinite;
-    font-size: 2.1rem;
+    font-size: 1.85rem;
 }
 @keyframes blinkCursor { 50% { opacity: 0; } }
+
+/* Chat */
+.chat-wrapper { height: 380px; }
+@media (min-width: 1024px) { .chat-wrapper { height: auto; } }
+
+.chat-container::-webkit-scrollbar { width: 6px; }
+.chat-container::-webkit-scrollbar-thumb { background: #FF3333; border-radius: 20px; }
+.chat-message { animation: fadeIn 0.3s ease-in; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 </style>
 </head>
 <body class="bg-black text-white font-sans overflow-hidden">
@@ -140,7 +111,7 @@ transform: translateY(-4px);
 </div>
 </div>
 
-<!-- Capsule Screen -->
+<!-- Capsule -->
 <div id="capsule" class="hidden fixed inset-0 overflow-y-auto flex items-center justify-center z-50 px-4 py-8">
 <div class="max-w-4xl w-full relative">
     <div class="absolute inset-0 bg-black/70 rounded-3xl overflow-hidden -z-10">
@@ -149,8 +120,7 @@ transform: translateY(-4px);
         </video>
     </div>
     <div class="relative text-center">
-        <img src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/images/penthouserecords.png"
-             alt="Penthouse Records" class="mx-auto mb-6 w-56">
+        <img src="https://raw.githubusercontent.com/vontamr/penthouselive.record/main/assets/images/penthouserecords.png" alt="Penthouse Records" class="mx-auto mb-6 w-56">
         <h1 class="text-5xl sm:text-6xl font-black tracking-tighter mb-2">WELCOME</h1>
         <p class="text-2xl sm:text-3xl font-light text-red-400 tracking-wide mb-10">TO THE PENTHOUSE</p>
         <p class="text-base sm:text-lg text-gray-300 mb-12 max-w-md mx-auto">
@@ -215,19 +185,11 @@ transform: translateY(-4px);
             </div>
         </div>
         
-        <div class="w-full lg:w-96 bg-zinc-950/95 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col h-[40vh] lg:h-auto">
+        <div class="chat-wrapper w-full lg:w-96 bg-zinc-950/95 backdrop-blur-md border-t lg:border-l border-zinc-800 flex flex-col">
             <div class="p-4 border-b border-zinc-800 font-medium text-sm flex items-center gap-2 bg-black/60">
-                <span class="text-red-500">●</span> 
-                <span>LIVE CHAT</span>
-                <span class="ml-auto text-xs text-gray-500">248 online</span>
+                <span class="text-red-500">●</span> LIVE CHAT <span class="ml-auto text-xs text-gray-500">248 online</span>
             </div>
-            
-            <div id="chat" class="chat-container flex-1 p-4 overflow-y-auto text-sm space-y-3 text-gray-300 bg-black/40">
-                <div class="chat-message"><span class="text-emerald-400">@rooftopking</span> This view is insane 🔥</div>
-                <div class="chat-message"><span class="text-pink-400">@orlandovibes</span> Penthouse energy hitting different tonight</div>
-                <div class="chat-message"><span class="text-sky-400">@luxurylife</span> Best club in Orlando hands down</div>
-            </div>
-            
+            <div id="chat" class="chat-container flex-1 p-4 overflow-y-auto text-sm space-y-3 text-gray-300 bg-black/40"></div>
             <div class="p-4 border-t border-zinc-800 bg-zinc-900">
                 <div class="flex gap-2">
                     <input type="text" id="chat-input" placeholder="Say something..." 
@@ -242,22 +204,14 @@ transform: translateY(-4px);
     </div>
 </div>
 
-<!-- Refined Smaller Sponsors Popup -->
+<!-- Sponsors Popup -->
 <div id="sponsors-popup" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-[100] px-4">
-    <div class="popup-content bg-zinc-900 border border-red-600/50 rounded-3xl p-8 text-center max-w-[360px] w-full">
+    <div class="bg-zinc-900 border border-red-600/50 rounded-3xl p-8 text-center max-w-[360px] w-full">
         <div class="text-4xl mb-4">✦</div>
         <h2 class="text-2xl font-bold text-white mb-2">SPONSORS ONLY</h2>
-        <p class="text-gray-400 mb-6 text-[15px]">
-            Live chat is exclusive to our premium sponsors and partners.
-        </p>
-        <button onclick="goToSponsors()" 
-                class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 py-3.5 rounded-2xl font-semibold text-base tracking-widest transition-all active:scale-[0.98]">
-            VIEW SPONSORS &amp; PARTNERS
-        </button>
-        <button onclick="closeSponsorsPopup()" 
-                class="mt-5 text-gray-400 hover:text-white text-sm">
-            Close
-        </button>
+        <p class="text-gray-400 mb-6">Live chat is exclusive to our premium sponsors and partners.</p>
+        <button onclick="goToSponsors()" class="w-full bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 py-3.5 rounded-2xl font-semibold text-base tracking-widest transition-all">VIEW SPONSORS &amp; PARTNERS</button>
+        <button onclick="closeSponsorsPopup()" class="mt-5 text-gray-400 hover:text-white text-sm">Close</button>
     </div>
 </div>
 
@@ -293,17 +247,14 @@ window.addEventListener('load', () => {
 function sendChatMessage() {
     document.getElementById('sponsors-popup').classList.remove('hidden');
 }
-
 function closeSponsorsPopup() {
     document.getElementById('sponsors-popup').classList.add('hidden');
 }
-
 function goToSponsors() {
     closeSponsorsPopup();
     backToCapsule();
 }
 
-// Other functions
 function checkPassword() {
     const passwordInput = document.getElementById('password');
     if (passwordInput.value === correctPassword) {
